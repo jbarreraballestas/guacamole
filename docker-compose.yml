@@ -1,0 +1,21 @@
+services:
+  guacd:
+    image: guacamole/guacd
+    container_name: guacd
+    restart: always
+    networks:
+      - npm_network
+  guacamole:
+    image: guacamole/guacamole
+    container_name: guacamole
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - guacd
+    networks:
+      - npm_network
+  
+
+networks:
+  npm_network:
+    external: true
